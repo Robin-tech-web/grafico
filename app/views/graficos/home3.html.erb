@@ -1,0 +1,30 @@
+<div id="chart"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script>
+	var margin = {top: 10, right: 10, bottom: 50, left: 30},
+    width = 500 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+var x = d3.time.scale()
+    .domain([new Date(2010,8,1), new Date(2012,4,1)])
+    .range([0, width]);
+var y = d3.scale.linear()
+    .domain([0, 1])
+    .range([height, 0]);
+
+var monthformat = d3.time.format("%B");
+var yearformat = d3.time.format("%Y");
+var xAxis1 = d3.svg.axis()
+    .scale(x)
+    //.ticks(d3.time.months)
+    .tickFormat(monthformat)
+    .tickSize(5,0)
+    .orient("bottom");
+var xAxis2 = d3.svg.axis()
+    .scale(x)
+    .ticks(d3.time.years, 1)
+    .tickFormat(yearformat)
+    .tickSize(5,0)
+    .orient("bottom");
+</script>

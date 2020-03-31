@@ -1,0 +1,66 @@
+<h1>Graficos Home 2</h1>
+
+<div class="holder">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ["January;2015", "February;2015", "March;2015", "January;2016", "February;2016", "March;2016"],
+    datasets: [{
+      label: '# of Votes',
+      xAxisID:'xAxis1',
+      data: [12, 19, 3, 5, 2, 3]
+    },
+    {
+      label: '# of Potatoes',
+      xAxisID:'xAxis2',
+      data: [9, 17, 28, 26, 29, 9],
+      borderColor: '#0674ec'
+    }]
+  },
+  options:{
+    scales:{
+      xAxes:[
+        {
+          id:'xAxis1',
+          type:"category",
+          ticks:{
+            callback:function(label){
+              var month = label.split(";")[0];
+              var year = label.split(";")[1];
+              return month;
+            }
+          }
+        },
+        {
+          id:'xAxis2',
+          type:"category",
+          gridLines: {
+            drawOnChartArea: false,
+          },
+          ticks:{
+            callback:function(label){
+              var month = label.split(";")[0];
+              var year = label.split(";")[1];
+              if(month === "February"){
+                return year;
+              }else{
+                return "";
+              }
+            }
+          }
+        }],
+      yAxes:[{
+        ticks:{
+          beginAtZero:true
+        }
+      }]
+    }
+  }
+});
+</script>
