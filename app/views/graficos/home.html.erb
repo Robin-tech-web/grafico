@@ -17,7 +17,7 @@
 				data: [80, 65, 63, 72, 81, 87, 85, 76, 80, 85, 20, 57, 53, 70, 77, 80, 81, 82, 83, 84, 76, 75, 77, 81, 72, 72, 85, 85, 84, 85, 65, 81, 75, 74, 40, 77, 80, 65, 76],
 				backgroundColor: 'transparent',
 				borderColor: [
-					'rgba(0,0,255,1',
+					'rgba(0,0,255,1)',
 				],
 				borderWidth: 2
 			}]
@@ -31,4 +31,14 @@
         }
     }
 	});
+
+	var range = data.labels.axisRanges.create();
+	range.category = "Vision & Purpose";
+	range.endCategory = "Quarterly Roadmap";
+	range.label.text = "2014: Q1";
+	range.label.paddingTop = 40;
+	range.label.location = 0.5;
+	range.label.horizontalCenter = "middle";
+	range.label.fontWeight = "bolder";
+	range.grid.disabled = true;
 </script>
