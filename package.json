@@ -1,5 +1,7 @@
 {
   "name": "graficos",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.9.12"
+  }
 }

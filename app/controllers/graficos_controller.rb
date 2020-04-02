@@ -7,4 +7,10 @@ class GraficosController < ApplicationController
 
   def home3
   end
+
+  def home4
+  end
+
+  def home5
+  end
 end
