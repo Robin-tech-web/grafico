@@ -2,7 +2,7 @@
 <style>
 #chartdiv {
   width: 100%;
-  height: 1200px;
+  height: 1600px;
 }
 
 </style>
@@ -104,13 +104,14 @@ categoryAxis.dataFields.category = "country";
 var categoryAxisRenderer = categoryAxis.renderer;
 var categoryAxisLabel = categoryAxisRenderer.labels.template;
 categoryAxisLabel.location = 0.5;
-categoryAxisLabel.radius = 28;
+categoryAxisLabel.radius = -10;
 categoryAxisLabel.relativeRotation = 90;
+categoryAxisLabel.bent = true;
 
-categoryAxisRenderer.fontSize = 11;
+categoryAxisRenderer.fontSize = 7;
 categoryAxisRenderer.minGridDistance = 10;
-categoryAxisRenderer.grid.template.radius = -25;
-categoryAxisRenderer.grid.template.strokeOpacity = 0.05;
+categoryAxisRenderer.grid.template.radius = -20;
+categoryAxisRenderer.grid.template.strokeOpacity = 1;
 categoryAxisRenderer.grid.template.interactionsEnabled = false;
 
 categoryAxisRenderer.ticks.template.disabled = true;
@@ -219,7 +220,7 @@ function createRange(name, continentData, index) {
 
     var axisFill = axisRange.axisFill;
     axisFill.innerRadius = -0.001; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
-    axisFill.radius = -20; // negative radius means it is calculated from max radius
+    axisFill.radius = -50; // negative radius means it is calculated from max radius
     axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
     axisFill.fillOpacity = 1;
     axisFill.togglable = true;
@@ -228,8 +229,9 @@ function createRange(name, continentData, index) {
     var axisLabel = axisRange.label;
     axisLabel.location = 0.5;
     axisLabel.fill = am4core.color("#ffffff");
-    axisLabel.radius = 3;
+    axisLabel.radius = 9;
     axisLabel.relativeRotation = 0;
+    axisLabel.fontSize = 17;
 }
 
 var slider = yearSliderContainer.createChild(am4core.Slider);

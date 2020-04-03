@@ -53,15 +53,17 @@ chart.data = [{
 /* Create axes */
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 categoryAxis.dataFields.category = "country";
-categoryAxis.renderer.labels.template.fontSize = 8;
-categoryAxis.renderer.labels.template.paddingTop = 0;
-categoryAxis.renderer.labels.template.centerLabelOnFullPeriod = true;
-categoryAxis.renderer.labels.template.adapter.add("rotation", function (rotation, target) {
-  var value = target.dataItem.category;
-  var position = categoryAxis.categoryToPosition(value);
-  var angle = categoryAxis.renderer.positionToAngle(position) - 290;
-  return angle;
-});
+// categoryAxis.renderer.labels.template.fontSize = 8;
+
+// categoryAxis.renderer.labels.template.centerLabelOnFullPeriod = true;
+// categoryAxis.renderer.labels.template.adapter.add("rotation", function (rotation, target) {
+//   var value = target.dataItem.category;
+//   var position = categoryAxis.categoryToPosition(value);
+//   var angle = categoryAxis.renderer.positionToAngle(position) - 290;
+//   return angle;
+// });
+categoryAxis.renderer.labels.template.bent = true;
+categoryAxis.renderer.labels.template.radius = -10;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
@@ -80,7 +82,7 @@ function createRange(name, startCategory, finishCategory) {
   range.category = startCategory;
   range.endCategory = finishCategory;
   range.label.text = name;
-  range.label.paddingBottom = 0;
+  range.label.paddingBottom = 45;
   range.label.location = 0.5;
 
   range.label.fontWeight = "bolder";
