@@ -1,7 +1,7 @@
 <script src="//www.amcharts.com/lib/4/core.js"></script>
 <script src="//www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-<div id="chartdiv" style="width: 100%; height: 1000px;"></div>
+<div id="chartdiv" style="width: 100%; height: 1500px;"></div>
 
 <script>
   // Themes begin
@@ -11,52 +11,162 @@ var colorSet = new am4core.ColorSet();
 /* Create chart instance */
 var chart = am4core.create("chartdiv", am4charts.RadarChart);
 
+
 /* Add data */
 chart.data = [{
-  "country": "Lithuania",
-  "litres": 501,
-  "units": 250
+  "country": "Sustainable Pace",
+  "units": 80
 }, {
-  "country": "Czech",
-  "litres": 301,
-  "units": 222
+  "country": "Self Organization",
+  "units": 65
 }, {
-  "country": "Ireland",
-  "litres": 266,
-  "units": 179
+  "country": "Technical Excellence",
+  "units": 63
 }, {
-  "country": "Germany",
-  "litres": 165,
-  "units": 298
+  "country": "Planning & Estimating",
+  "units": 72
 }, {
-  "country": "Australia",
-  "litres": 139,
-  "units": 299
+  "country": "Effective Meetings",
+  "units": 81
 }, {
-  "country": "Austria",
-  "litres": 336,
-  "units": 185
+  "country": "Size & Skills",
+  "units": 87
 }, {
-  "country": "UK",
-  "litres": 290,
-  "units": 150
+  "country": "Allocation & Stabililty",
+  "units": 85
 }, {
-  "country": "Belgium",
-  "litres": 325,
-  "units": 382
+  "country": "Workspace",
+  "units": 76
 }, {
-  "country": "The Ne",
-  "litres": 40,
-  "units": 172
+  "country": "Vision & Purpose",
+  "units": 80
+}, {
+  "country": "Goals & Outcomes",
+  "units": 85
+}, {
+  "country": "Quarterly/Roadmap",
+  "units": 20
+}, {
+  "country": "Monthly/Release",
+  "units": 57
+}, {
+  "country": "Weekly/Iteration",
+  "units": 53
+}, {
+  "country": "Roles & Expectations",
+  "units": 70
+}, {
+  "country": "Generalizing Specialists",
+  "units": 77
+}, {
+  "country": "Product Owner",
+  "units": 80
+}, {
+  "country": "Team",
+  "units": 81
+}, {
+  "country": "Stakeholder",
+  "units": 82
+}, {
+  "country": "Predictable Velocity",
+  "units": 83
+}, {
+  "country": "Time to Market",
+  "units": 84
+}, {
+  "country": "Value Delivered",
+  "units": 76
+}, {
+  "country": "Quality",
+  "units": 75
+}, {
+  "country": "Response to Change",
+  "units": 77
+}, {
+  "country": "Effective Facilitation",
+  "units": 81
+}, {
+  "country": "Leadership1",
+  "units": 72
+}, {
+  "country": "Impediment Mgmt",
+  "units": 72
+}, {
+  "country": "Leadership2",
+  "units": 85
+}, {
+  "country": "Technical Expertise",
+  "units": 85
+}, {
+  "country": "Engagement",
+  "units": 84
+}, {
+  "country": "Backlog Mgmt.",
+  "units": 85
+}, {
+  "country": "Leadership3",
+  "units": 65
+}, {
+  "country": "Leadership4",
+  "units": 81
+}, {
+  "country": "Develop People",
+  "units": 75
+}, {
+  "country": "Process Imp.",
+  "units": 74
+}, {
+  "country": "Happiness",
+  "units": 40
+}, {
+  "country": "Colaboration",
+  "units": 77
+}, {
+  "country": "Trust & Respect",
+  "units": 80
+}, {
+  "country": "Creativity & Innovation",
+  "units": 65
+}, {
+  "country": "Accountability",
+  "units": 65
+}, {
+  "country": "Sustainable Pace",
+  "units": 77
+}, {
+  "country": "Self Organization",
+  "units": 77
+}, {
+  "country": "Technical Excellence",
+  "units": 77
+}, {
+  "country": "Planning & Estimating",
+  "units": 77
+}, {
+  "country": "Effective Meetings",
+  "units": 77
+}, {
+  "country": "Size & Skills",
+  "units": 77
+}, {
+  "country": "Allocation & Stabililty",
+  "units": 77
+}, {
+  "country": "Workspace",
+  "units": 77
 }];
 
 /* Create axes */
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 categoryAxis.dataFields.category = "country";
 categoryAxis.renderer.labels.template.bent = true;
-categoryAxis.renderer.labels.template.radius = -10;
+categoryAxis.renderer.labels.template.radius = -40;
+categoryAxis.renderer.labels.template.location = 0.5;
+categoryAxis.renderer.labels.template.fontSize = 8;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.min = 0;
+valueAxis.max = 120;
 
 var series2 = chart.series.push(new am4charts.RadarColumnSeries());
 series2.dataFields.valueY = "units";
@@ -64,10 +174,9 @@ series2.dataFields.categoryX = "country";
 series2.name = "Units";
 series2.strokeWidth = 0;
 series2.columns.template.fill = am4core.color("#CDA2AB");
-series2.columns.template.tooltipText = "Series: {name}\nCategory: {categoryX}\nValue: {valueY}";
 
 
-function createRange(name, startCategory, finishCategory) {
+function createRange(name, startCategory, finishCategory, rangeColor) {
 
   var range = categoryAxis.axisRanges.create();
   range.category = startCategory;
@@ -75,30 +184,64 @@ function createRange(name, startCategory, finishCategory) {
   range.label.text = name;
   range.label.paddingBottom = 45;
   range.label.location = 0.5;
-
   range.label.fontWeight = "bolder";
-  range.grid.disabled = false;
-  range.grid.strokeWidth = 3;
-
-  // range.axisFill.fill = colorSet.getIndex(index - 3);
-  // range.grid.disabled = true;
-  // range.label.interactionsEnabled = false;
+  range.label.fontSize = 15;
+  range.label.radius = -15;
+  range.label.fill = am4core.color("#ffffff");
   range.label.bent = true;
+
+  range.grid.disabled = false;
+  range.grid.strokeWidth = 3;  
 
   var axisFill = range.axisFill;
   axisFill.innerRadius = -0.001; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
-  axisFill.radius = -20; // negative radius means it is calculated from max radius
+  axisFill.radius = -40; // negative radius means it is calculated from max radius
   axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
   axisFill.fillOpacity = 1;
   axisFill.togglable = true;
-
+  axisFill.fill = am4core.color(rangeColor);
 }
 
-createRange("Clarity", "Lithuania", "Czech");
-createRange("Performance", "Ireland", "Germany");
-createRange("Leadership", "Australia", "Austria");
-createRange("Culture", "UK", "Belgium");
-createRange("Foundation", "The Ne", "The Ne");
+function createRange2(name, startCategory, finishCategory) {
 
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+  range.label.text = name;
+  range.label.paddingBottom = 45;
+  range.label.location = 0.5;
+  range.label.fontWeight = "bolder";
+  range.label.fontSize = 15;
+  range.label.radius = -34;
+  range.label.fill = am4core.color("black");
+  range.label.bent = true;
+  range.stroke = am4core.color("red").lighten(-0.5);
 
+  var axisFill = range.axisFill;
+  axisFill.innerRadius = -50; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
+  axisFill.radius = -0.001; // negative radius means it is calculated from max radius
+  axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
+  axisFill.fillOpacity = 1;
+  axisFill.togglable = true;
+  axisFill.fill = am4core.color("#ffffff");
+}
+
+createRange("Clarity", "Vision & Purpose", "Generalizing Specialists", "#ffa64d");
+createRange("Performance", "Product Owner", "Response to Change", "#267326");
+createRange("Leadership", "Effective Facilitation", "Process Imp.", "#4d4dff");
+createRange("Culture", "Happiness", "Accountability", "#b30000");
+createRange("Foundation", "Sustainable Pace", "Workspace", "#0073e6");
+
+createRange2("Vision", "Vision & Purpose", "Goals & Outcomes")
+createRange2("Planning", "Quarterly/Roadmap", "Weekly/Iteration")
+createRange2("Roles", "Roles & Expectations", "Generalizing Specialists")
+createRange2("Confidence", "Product Owner", "Stakeholder")
+createRange2("Measurements", "Predictable Velocity", "Response to Change")
+createRange2("Team Facilitator", "Effective Facilitation", "Impediment Mgmt")
+createRange2("Technical Lead(s)", "Leadership2", "Technical Expertise")
+createRange2("Product Owner", "Engagement", "Leadership3")
+createRange2("Management", "Leadership4", "Process Imp.")
+createRange2("Team Dynamics", "Happiness", "Accountability")
+createRange2("Agility", "Sustainable Pace", "Effective Meetings")
+createRange2("Team Structure", "Size & Skills", "Workspace")
 </script>
