@@ -104,9 +104,11 @@ categoryAxis.dataFields.category = "country";
 var categoryAxisRenderer = categoryAxis.renderer;
 var categoryAxisLabel = categoryAxisRenderer.labels.template;
 categoryAxisLabel.location = 0.5;
-categoryAxisLabel.radius = -10;
+categoryAxisLabel.radius = -35;
 categoryAxisLabel.relativeRotation = 90;
 categoryAxisLabel.bent = true;
+// categoryAxisLabel.wrap = true;
+// categoryAxisLabel.maxWidth = 4;
 
 categoryAxisRenderer.fontSize = 7;
 categoryAxisRenderer.minGridDistance = 10;
@@ -214,7 +216,9 @@ function createRange(name, continentData, index) {
 
     // every 3rd color for a bigger contrast
     axisRange.axisFill.fill = colorSet.getIndex(index * 3);
-    axisRange.grid.disabled = true;
+    axisRange.grid.disabled = false;
+    axisRange.grid.strokeWidth = 3;
+    axisRange.grid.radius = -0.001;
     axisRange.label.interactionsEnabled = false;
     axisRange.label.bent = true;
 
@@ -225,6 +229,7 @@ function createRange(name, continentData, index) {
     axisFill.fillOpacity = 1;
     axisFill.togglable = true;
 
+
     // Definiert Position und Design des Namens der Übergruppe (z.B. Clarity)
     var axisLabel = axisRange.label;
     axisLabel.location = 0.5;
@@ -232,6 +237,7 @@ function createRange(name, continentData, index) {
     axisLabel.radius = 9;
     axisLabel.relativeRotation = 0;
     axisLabel.fontSize = 17;
+    axisLabel.fontWeight = "bolder";
 }
 
 var slider = yearSliderContainer.createChild(am4core.Slider);
