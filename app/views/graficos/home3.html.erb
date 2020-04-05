@@ -151,24 +151,6 @@ chart.data = [{
 }, {
   "country": "Allocation & Stabililty",
   "units": 77
-}, {
-  "category": "Workspace",
-  "values": 77
-}, {
-  "category": "Workspace",
-  "values": 77
-}, {
-  "category": "Workspace",
-  "values": 77
-}, {
-  "category": "Workspace",
-  "values": 77
-}, {
-  "category": "Workspace",
-  "values": 77
-}, {
-  "category": "Workspace",
-  "values": 77
 }];
 
 /* Create axes */
@@ -178,26 +160,20 @@ categoryAxis.renderer.labels.template.bent = true;
 categoryAxis.renderer.labels.template.radius = -28;
 categoryAxis.renderer.labels.template.location = 0.5;
 categoryAxis.renderer.labels.template.fontSize = 7;
+
 categoryAxis.renderer.grid.stroke = am4core.color("black");
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
 valueAxis.max = 150;
 
-var series2 = chart.series.push(new am4charts.RadarColumnSeries());
-series2.dataFields.valueY = "units";
-series2.dataFields.categoryX = "country";
-series2.name = "Units";
-series2.strokeWidth = 0;
-series2.columns.template.fill = am4core.color("#CDA2AB");
-
 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
-series1.dataFields.valueY = "values";
-series1.dataFields.categoryX = "category";
-series1.name = "Values";
+series1.dataFields.valueY = "units";
+series1.dataFields.categoryX = "country";
+series1.name = "Units";
 series1.strokeWidth = 0;
 series1.columns.template.fill = am4core.color("#CDA2AB");
-
+series1.columns.template.innerRadius = am4core.percent(50);
 
 function createRange(name, startCategory, finishCategory, rangeColor) {
 
