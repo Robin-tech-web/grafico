@@ -10,7 +10,7 @@ var colorSet = new am4core.ColorSet();
 // Themes end
 /* Create chart instance */
 var chart = am4core.create("chartdiv", am4charts.RadarChart);
-chart.innerRadius = am4core.percent(30);
+chart.innerRadius = am4core.percent(3);
 
 /* Add data */
 chart.data = [{
@@ -130,30 +130,6 @@ chart.data = [{
 }, {
   "country": "Accountability",
   "units": 65
-}, {
-  "country": "Sustainable Pace",
-  "units": 77
-}, {
-  "country": "Self Organization",
-  "units": 77
-}, {
-  "country": "Technical Excellence",
-  "units": 77
-}, {
-  "country": "Planning & Estimating",
-  "units": 77
-}, {
-  "country": "Effective Meetings",
-  "units": 77
-}, {
-  "country": "Size & Skills",
-  "units": 77
-}, {
-  "country": "Allocation & Stabililty",
-  "units": 77
-}, {
-  "country": "Workspace",
-  "units": 77
 }];
 
 /* Create axes */
@@ -167,13 +143,15 @@ categoryAxis.renderer.labels.template.fontSize = 7;
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
 valueAxis.max = 150;
+valueAxis.tooltip.disabled = true;
 
-var series2 = chart.series.push(new am4charts.RadarColumnSeries());
+var series2 = chart.series.push(new am4charts.RadarSeries());
 series2.dataFields.valueY = "units";
 series2.dataFields.categoryX = "country";
 series2.name = "Units";
-series2.strokeWidth = 0;
-series2.columns.template.fill = am4core.color("#CDA2AB");
+series2.strokeWidth = 3;
+series2.stroke = am4core.color("black");
+series2.dataItems.template.locations.categoryX = 0.5;
 
 
 function createRange(name, startCategory, finishCategory, rangeColor) {
@@ -191,7 +169,8 @@ function createRange(name, startCategory, finishCategory, rangeColor) {
   range.label.bent = true;
 
   range.grid.disabled = false;
-  range.grid.strokeWidth = 3;  
+  range.grid.strokeWidth = 3;
+  range.grid.stroke = am4core.color("black");
 
   var axisFill = range.axisFill;
   axisFill.innerRadius = -0.001; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
@@ -215,7 +194,7 @@ function createRange2(name, startCategory, finishCategory) {
   range.label.radius = -34;
   range.label.fill = am4core.color("black");
   range.label.bent = true;
-  range.stroke = am4core.color("red").lighten(-0.5);
+  range.grid.strokeWidth = 0;
 
   var axisFill = range.axisFill;
   axisFill.innerRadius = -37;
@@ -226,6 +205,21 @@ function createRange2(name, startCategory, finishCategory) {
   axisFill.fill = am4core.color("#ffffff");
   axisFill.stroke = am4core.color("black");
   axisFill.strokeWidth = 3;
+}
+
+function createRange3(startCategory, finishCategory) {
+
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+
+  var axisFill = range.axisFill;
+  axisFill.innerRadius = 12;
+  axisFill.radius = 1; // negative radius means it is calculated from max radius
+  axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
+  axisFill.fillOpacity = 1;
+  axisFill.togglable = true;
+  axisFill.fill = am4core.color("black");
 }
 
 createRange("Clarity", "Vision & Purpose", "Generalizing Specialists", "#ffa64d");
@@ -246,4 +240,6 @@ createRange2("Management", "Leadership4", "Process Imp.")
 createRange2("Team Dynamics", "Happiness", "Accountability")
 createRange2("Agility", "Sustainable Pace", "Effective Meetings")
 createRange2("Team Structure", "Size & Skills", "Workspace")
+
+createRange3("Sustainable Pace", "Accountability")
 </script>

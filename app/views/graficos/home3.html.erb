@@ -1,7 +1,6 @@
 <script src="//www.amcharts.com/lib/4/core.js"></script>
 <script src="//www.amcharts.com/lib/4/charts.js"></script>
 <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="//www.amcharts.com/lib/4/plugins/overlapBuster.js"></script> 
 <div id="chartdiv" style="width: 100%; height: 1150px;"></div>
 
 <script>
@@ -17,19 +16,15 @@ chart.innerRadius = am4core.percent(30);
 chart.data = [{
   "country": "Sustainable Pace",
   "units": 80
-  "average": 50
 }, {
   "country": "Self Organization",
   "units": 65
-  "average": 50
 }, {
   "country": "Technical Excellence",
   "units": 63
-  "average": 50
 }, {
   "country": "Planning & Estimating",
   "units": 72
-  "average": 50
 }, {
   "country": "Effective Meetings",
   "units": 81
@@ -179,14 +174,6 @@ series1.name = "Units";
 series1.strokeWidth = 0;
 series1.columns.template.fill = am4core.color("#CDA2AB");
 series1.columns.template.innerRadius = am4core.percent(50);
-
-var series2 = chart.series.push(new am4charts.RadarSeries());
-series2.dataFields.valueY = "average";
-series2.dataFields.categoryX = "country";
-series2.name = "Average";
-series2.strokeWidth = 0;
-series2.columns.template.fill = am4core.color("#CDA2AB");
-series2.columns.template.innerRadius = am4core.percent(50);
 
 function createRange(name, startCategory, finishCategory, rangeColor) {
 
