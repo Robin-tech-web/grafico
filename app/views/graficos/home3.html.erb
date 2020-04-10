@@ -14,52 +14,52 @@ chart.innerRadius = am4core.percent(30);
 
 /* Add data */
 chart.data = [{
-  "country": "Sustainable Pace",
+  "country": "Sustainable",
   "units": 80
 }, {
-  "country": "Self Organization",
+  "country": "Self",
   "units": 65
 }, {
-  "country": "Technical Excellence",
+  "country": "Technical",
   "units": 63
 }, {
-  "country": "Planning & Estimating",
+  "country": "Planning &",
   "units": 72
 }, {
-  "country": "Effective Meetings",
+  "country": "Effective ",
   "units": 81
 }, {
   "country": "Size & Skills",
   "units": 87
 }, {
-  "country": "Allocation & Stabililty",
+  "country": "Allocation &",
   "units": 85
 }, {
   "country": "Workspace",
   "units": 76
 }, {
-  "country": "Vision & Purpose",
+  "country": "Vision &",
   "units": 80
 }, {
-  "country": "Goals & Outcomes",
+  "country": "Goals &",
   "units": 85
 }, {
-  "country": "Quarterly/Roadmap",
+  "country": "Quarterly/",
   "units": 20
 }, {
-  "country": "Monthly/Release",
+  "country": "Monthly/",
   "units": 57
 }, {
-  "country": "Weekly/Iteration",
+  "country": "Weekly/",
   "units": 53
 }, {
-  "country": "Roles & Expectations",
+  "country": "Roles &",
   "units": 70
 }, {
-  "country": "Generalizing Specialists",
+  "country": "Generalizing",
   "units": 77
 }, {
-  "country": "Product Owner",
+  "country": "Product",
   "units": 80
 }, {
   "country": "Team",
@@ -68,10 +68,10 @@ chart.data = [{
   "country": "Stakeholder",
   "units": 82
 }, {
-  "country": "Predictable Velocity",
+  "country": "Predictable",
   "units": 83
 }, {
-  "country": "Time to Market",
+  "country": "Time",
   "units": 84
 }, {
   "country": "Value Delivered",
@@ -80,22 +80,22 @@ chart.data = [{
   "country": "Quality",
   "units": 75
 }, {
-  "country": "Response to Change",
+  "country": "Response",
   "units": 77
 }, {
-  "country": "Effective Facilitation",
+  "country": "Effective",
   "units": 81
 }, {
   "country": "Leadership1",
   "units": 72
 }, {
-  "country": "Impediment Mgmt",
+  "country": "Impediment",
   "units": 72
 }, {
   "country": "Leadership2",
   "units": 85
 }, {
-  "country": "Technical Expertise",
+  "country": "Technical ",
   "units": 85
 }, {
   "country": "Engagement",
@@ -125,47 +125,30 @@ chart.data = [{
   "country": "Trust & Respect",
   "units": 80
 }, {
-  "country": "Creativity & Innovation",
+  "country": "Creativity &",
   "units": 65
 }, {
   "country": "Accountability",
   "units": 65
-}, {
-  "country": "Sustainable Pace",
-  "units": 77
-}, {
-  "country": "Self Organization",
-  "units": 77
-}, {
-  "country": "Technical Excellence",
-  "units": -47
-}, {
-  "country": "Planning & Estimating",
-  "units": 77
-}, {
-  "country": "Effective Meetings",
-  "units": 77
-}, {
-  "country": "Size & Skills",
-  "units": 77
-}, {
-  "country": "Allocation & Stabililty",
-  "units": 77
 }];
 
 /* Create axes */
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 categoryAxis.dataFields.category = "country";
 categoryAxis.renderer.labels.template.bent = true;
-categoryAxis.renderer.labels.template.radius = -28;
+categoryAxis.renderer.labels.template.radius = -55;
 categoryAxis.renderer.labels.template.location = 0.5;
-categoryAxis.renderer.labels.template.fontSize = 7;
+categoryAxis.renderer.labels.template.fontSize = 9;
+categoryAxis.renderer.labels.template.wrap = true;
+categoryAxis.renderer.labels.template.maxWidth = 1;
 
 categoryAxis.renderer.grid.stroke = am4core.color("black");
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
 valueAxis.max = 150;
+valueAxis.tooltip.disabled = true;
+
 
 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
 series1.dataFields.valueY = "units";
@@ -173,7 +156,6 @@ series1.dataFields.categoryX = "country";
 series1.name = "Units";
 series1.strokeWidth = 0;
 series1.columns.template.fill = am4core.color("#CDA2AB");
-series1.columns.template.innerRadius = am4core.percent(50);
 
 function createRange(name, startCategory, finishCategory, rangeColor) {
 
@@ -185,7 +167,7 @@ function createRange(name, startCategory, finishCategory, rangeColor) {
   range.label.location = 0.5;
   range.label.fontWeight = "bolder";
   range.label.fontSize = 20;
-  range.label.radius = -14;
+  range.label.radius = -30;
   range.label.fill = am4core.color("#ffffff");
   range.label.bent = true;
 
@@ -211,7 +193,7 @@ function createRange2(name, startCategory, finishCategory) {
   range.label.location = 0.5;
   range.label.fontWeight = "bolder";
   range.label.fontSize = 15;
-  range.label.radius = -34;
+  range.label.radius = -68;
   range.label.fill = am4core.color("black");
   range.label.bent = true;
   range.stroke = am4core.color("red").lighten(-0.5);
@@ -237,7 +219,7 @@ function createRange3(name, startCategory, finishCategory) {
   range.label.location = 0.5;
   range.label.fontWeight = "bolder";
   range.label.fontSize = 12;
-  range.label.radius = -192;
+  range.label.radius = -380;
   range.label.fill = am4core.color("black");
   range.label.bent = true;
   range.stroke = am4core.color("red").lighten(-0.5);
@@ -253,28 +235,69 @@ function createRange3(name, startCategory, finishCategory) {
   axisFill.strokeWidth = 3;
 }
 
-createRange("Clarity", "Vision & Purpose", "Generalizing Specialists", "#ffa64d");
-createRange("Performance", "Product Owner", "Response to Change", "#267326");
-createRange("Leadership", "Effective Facilitation", "Process Imp.", "#4d4dff");
-createRange("Culture", "Happiness", "Accountability", "#b30000");
-createRange("Foundation", "Sustainable Pace", "Workspace", "#0073e6");
+function createRange4(name, startCategory, finishCategory) {
 
-createRange2("Vision", "Vision & Purpose", "Goals & Outcomes")
-createRange2("Planning", "Quarterly/Roadmap", "Weekly/Iteration")
-createRange2("Roles", "Roles & Expectations", "Generalizing Specialists")
-createRange2("Confidence", "Product Owner", "Stakeholder")
-createRange2("Measurements", "Predictable Velocity", "Response to Change")
-createRange2("Team Facilitator", "Effective Facilitation", "Impediment Mgmt")
-createRange2("Technical Lead(s)", "Leadership2", "Technical Expertise")
-createRange2("Product Owner", "Engagement", "Leadership3")
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+  range.label.text = name;
+  range.label.paddingBottom = 45;
+  range.label.location = 0.5;
+  range.label.fontSize = 9;
+  range.label.radius = -110;
+  range.label.fill = am4core.color("black");
+  range.label.bent = true;
+
+}
+
+createRange("Clarity", "Vision &", "Generalizing", "#ffa64d");
+createRange("Performance", "Product", "Response", "#267326");
+createRange("Leadership", "Effective", "Process Imp.", "#4d4dff");
+createRange("Culture", "Happiness", "Accountability", "#b30000");
+createRange("Foundation", "Sustainable", "Workspace", "#0073e6");
+
+createRange2("Vision", "Vision &", "Goals &")
+createRange2("Planning", "Quarterly/", "Weekly/")
+createRange2("Roles", "Roles &", "Generalizing")
+createRange2("Confidence", "Product", "Stakeholder")
+createRange2("Measurements", "Predictable", "Response")
+createRange2("Team Facilitator", "Effective", "Impediment")
+createRange2("Technical Leads", "Leadership2", "Technical ")
+createRange2("Product", "Engagement", "Leadership3")
 createRange2("Management", "Leadership4", "Process Imp.")
 createRange2("Team Dynamics", "Happiness", "Accountability")
-createRange2("Agility", "Sustainable Pace", "Effective Meetings")
+createRange2("Agility", "Sustainable", "Effective ")
 createRange2("Team Structure", "Size & Skills", "Workspace")
 
-createRange3("Clarity", "Vision & Purpose", "Generalizing Specialists");
-createRange3("Performance", "Product Owner", "Response to Change");
-createRange3("Leadership", "Effective Facilitation", "Process Imp.");
+createRange3("Clarity", "Vision &", "Generalizing");
+createRange3("Performance", "Product", "Response");
+createRange3("Leadership", "Effective", "Process Imp.");
 createRange3("Culture", "Happiness", "Accountability");
-createRange3("Foundation", "Sustainable Pace", "Workspace");
+createRange3("Foundation", "Sustainable", "Workspace");
+
+createRange4("Pace", "Sustainable", "Sustainable")
+createRange4("Organization", "Self", "Self")
+createRange4("Innovation", "Creativity &", "Creativity &")
+createRange4("Excellence", "Technical", "Technical")
+createRange4("Estimating", "Planning &", "Planning &")
+
+createRange4("Meetings", "Effective ", "Effective ")
+
+createRange4("Stabililty", "Allocation &", "Allocation &")
+createRange4("Purpose", "Vision &", "Vision &")
+createRange4("Outcomes", "Goals &", "Goals &")
+createRange4("Roadmap", "Quarterly/", "Quarterly/")
+createRange4("Release", "Monthly/", "Monthly/")
+createRange4("Iteration", "Weekly/", "Weekly/")
+createRange4("Expectations", "Roles &", "Roles &")
+createRange4("Specialists", "Generalizing", "Generalizing")
+createRange4("Owner", "Product", "Product")
+createRange4("Velocity", "Predictable", "Predictable")
+
+createRange4("to Market", "Time", "Time")
+
+createRange4("to Change", "Response", "Response")
+createRange4("Facilitation", "Effective", "Effective")
+createRange4("Mgmt", "Impediment", "Impediment")
+createRange4("Expertise", "Technical ", "Technical ")
 </script>
