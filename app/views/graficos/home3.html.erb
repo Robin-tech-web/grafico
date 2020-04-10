@@ -147,9 +147,9 @@ categoryAxis.renderer.grid.stroke = am4core.color("black");
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
 valueAxis.max = 150;
+valueAxis.strictMinMax = true;
 valueAxis.tooltip.disabled = true;
 valueAxis.zIndex = 10;
-valueAxis.innerRadius = 150;
 
 
 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
