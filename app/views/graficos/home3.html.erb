@@ -148,6 +148,8 @@ var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
 valueAxis.max = 150;
 valueAxis.tooltip.disabled = true;
+valueAxis.zIndex = 10;
+valueAxis.innerRadius = 150;
 
 
 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
@@ -170,6 +172,7 @@ function createRange(name, startCategory, finishCategory, rangeColor) {
   range.label.radius = -30;
   range.label.fill = am4core.color("#ffffff");
   range.label.bent = true;
+  range.zIndex = 11;
 
   range.grid.disabled = false;
   range.grid.strokeWidth = 3;  
@@ -197,6 +200,7 @@ function createRange2(name, startCategory, finishCategory) {
   range.label.fill = am4core.color("black");
   range.label.bent = true;
   range.stroke = am4core.color("red").lighten(-0.5);
+  range.zIndex = 12;
 
   var axisFill = range.axisFill;
   axisFill.innerRadius = -37; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
