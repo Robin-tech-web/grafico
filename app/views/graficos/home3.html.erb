@@ -142,12 +142,22 @@ categoryAxis.renderer.labels.template.fontSize = 9;
 categoryAxis.renderer.labels.template.wrap = true;
 categoryAxis.renderer.labels.template.maxWidth = 1;
 
-categoryAxis.renderer.grid.stroke = am4core.color("black");
-categoryAxis.renderer.grid.strokeWidth = 1;
+categoryAxis.renderer.grid.template.strokeOpacity = 0.5;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
 valueAxis.max = 150;
+valueAxis.strictMinMax = true;
+valueAxis.tooltip.defaultState.properties.opacity = 0;
+valueAxis.tooltip.animationDuration = 0;
+valueAxis.cursorTooltipEnabled = true;
+valueAxis.zIndex = 10;
+
+var valueAxisRenderer = valueAxis.renderer;
+valueAxisRenderer.axisFills.template.disabled = true;
+valueAxisRenderer.ticks.template.disabled = true;
+valueAxisRenderer.minGridDistance = 20;
+valueAxisRenderer.grid.template.strokeOpacity = 0.05;
 
 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
 series1.dataFields.valueY = "units";
@@ -203,7 +213,7 @@ function createRange2(name, startCategory, finishCategory) {
   axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
   axisFill.fillOpacity = 1;
   axisFill.togglable = true;
-  axisFill.fill = am4core.color("#ffffff");
+  axisFill.fill = am4core.color("white");
   axisFill.stroke = am4core.color("black");
   axisFill.strokeWidth = 3;
 }
@@ -246,6 +256,9 @@ function createRange4(name, startCategory, finishCategory) {
   range.label.radius = -110;
   range.label.fill = am4core.color("black");
   range.label.bent = true;
+
+  range.grid.disabled = true;
+
 
 }
 
