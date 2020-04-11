@@ -15,121 +15,121 @@ chart.innerRadius = am4core.percent(30);
 /* Add data */
 chart.data = [{
   "country": "Sustainable",
-  "units": 80
+  "units": 8
 }, {
   "country": "Self",
-  "units": 65
+  "units": 6.5
 }, {
   "country": "Technical",
-  "units": 63
+  "units": 6.3
 }, {
   "country": "Planning &",
-  "units": 72
+  "units": 7.2
 }, {
   "country": "Effective ",
-  "units": 81
+  "units": 8.1
 }, {
   "country": "Size & Skills",
-  "units": 87
+  "units": 8.7
 }, {
   "country": "Allocation &",
-  "units": 85
+  "units": 8.5
 }, {
   "country": "Workspace",
-  "units": 76
+  "units": 7.6
 }, {
   "country": "Vision &",
-  "units": 80
+  "units": 8
 }, {
   "country": "Goals &",
-  "units": 85
+  "units": 8.5
 }, {
   "country": "Quarterly/",
-  "units": 20
+  "units": 2
 }, {
   "country": "Monthly/",
-  "units": 57
+  "units": 5.7
 }, {
   "country": "Weekly/",
-  "units": 53
+  "units": 5.3
 }, {
   "country": "Roles &",
-  "units": 70
+  "units": 7
 }, {
   "country": "Generalizing",
-  "units": 77
+  "units": 7.7
 }, {
   "country": "Product",
-  "units": 80
+  "units": 8
 }, {
   "country": "Team",
-  "units": 81
+  "units": 8.1
 }, {
   "country": "Stakeholder",
-  "units": 82
+  "units": 8.2
 }, {
   "country": "Predictable",
-  "units": 83
+  "units": 8.3
 }, {
   "country": "Time",
-  "units": 84
+  "units": 8.4
 }, {
   "country": "Value",
-  "units": 76
+  "units": 7.6
 }, {
   "country": "Quality",
-  "units": 75
+  "units": 7.5
 }, {
   "country": "Response",
-  "units": 77
+  "units": 7.7
 }, {
   "country": "Effective",
-  "units": 81
+  "units": 8.1
 }, {
   "country": "Leadership1",
-  "units": 72
+  "units": 7.2
 }, {
   "country": "Impediment",
-  "units": 72
+  "units": 7.2
 }, {
   "country": "Leadership2",
-  "units": 85
+  "units": 8.5
 }, {
   "country": "Technical ",
-  "units": 85
+  "units": 8.5
 }, {
   "country": "Engagement",
-  "units": 84
+  "units": 8.4
 }, {
   "country": "Backlog Mgmt.",
-  "units": 85
+  "units": 8.5
 }, {
   "country": "Leadership3",
-  "units": 65
+  "units": 6.5
 }, {
   "country": "Leadership4",
-  "units": 81
+  "units": 8.1
 }, {
   "country": "Develop",
-  "units": 75
+  "units": 7.5
 }, {
   "country": "Process Imp.",
-  "units": 74
+  "units": 7.4
 }, {
   "country": "Happiness",
-  "units": 40
+  "units": 4.0
 }, {
   "country": "Colaboration",
-  "units": 77
+  "units": 7.7
 }, {
   "country": "Trust &",
-  "units": 80
+  "units": 8
 }, {
   "country": "Creativity &",
-  "units": 65
+  "units": 6.5
 }, {
   "country": "Accountability",
-  "units": 65
+  "units": 6.5
 }];
 
 /* Create axes */
@@ -146,12 +146,9 @@ categoryAxis.renderer.grid.template.strokeOpacity = 0.5;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 valueAxis.min = 0;
-valueAxis.max = 150;
+valueAxis.max = 13;
 valueAxis.strictMinMax = true;
-valueAxis.tooltip.defaultState.properties.opacity = 0;
-valueAxis.tooltip.animationDuration = 0;
-valueAxis.cursorTooltipEnabled = true;
-valueAxis.zIndex = 10;
+valueAxis.disabled = true;
 
 var valueAxisRenderer = valueAxis.renderer;
 valueAxisRenderer.axisFills.template.disabled = true;
@@ -165,6 +162,12 @@ series1.dataFields.categoryX = "country";
 series1.name = "Units";
 series1.strokeWidth = 0;
 series1.columns.template.fill = am4core.color("#CDA2AB");
+
+var labelBullet = series1.bullets.push(new am4charts.LabelBullet());
+  labelBullet.label.text = "{valueY}";
+  labelBullet.label.fill = am4core.color("black");
+  labelBullet.locationY = 0.1;
+
 
 function createRange(name, startCategory, finishCategory, rangeColor) {
 
