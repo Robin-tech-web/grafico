@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_125351) do
+ActiveRecord::Schema.define(version: 2020_04_29_132303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,30 @@ ActiveRecord::Schema.define(version: 2020_04_29_125351) do
     t.integer "weekly_iteration"
     t.integer "roles_and_expectations"
     t.integer "generalizing_specialities"
+    t.integer "product_owner"
+    t.integer "team"
+    t.integer "stakeholder"
+    t.integer "predictable_velocity"
+    t.integer "time_to_market"
+    t.integer "value_delivered"
+    t.integer "quality"
+    t.integer "response_to_change"
+    t.integer "effective_facilitation"
+    t.integer "leadership_1"
+    t.integer "impediment_management"
+    t.integer "leadership_2"
+    t.integer "technical_expertise"
+    t.integer "engagement"
+    t.integer "backlog_management"
+    t.integer "leadership_3"
+    t.integer "leadership_4"
+    t.integer "develop_people"
+    t.integer "process_imp"
+    t.integer "happiness"
+    t.integer "collaboration"
+    t.integer "trust_and_respect"
+    t.integer "creativity_and_innovation"
+    t.integer "accountability"
   end
 
 end
