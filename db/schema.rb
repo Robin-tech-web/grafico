@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_123607) do
+ActiveRecord::Schema.define(version: 2020_04_29_125351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2020_04_29_123607) do
     t.integer "size_and_skills"
     t.integer "allocation_and_stability"
     t.integer "workspace"
+    t.integer "vision_and_purpose"
+    t.integer "goals_and_outcomes"
+    t.integer "quarterly_roadmap"
+    t.integer "monthly_release"
+    t.integer "weekly_iteration"
+    t.integer "roles_and_expectations"
+    t.integer "generalizing_specialities"
   end
 
 end
