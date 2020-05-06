@@ -1,16 +1,27 @@
 class GraficosController < ApplicationController
-  def home
+  def index
+    @graficos = Grafico.all
   end
 
-  def home2
+  def show
+    @grafico = Grafico.find(params[:id])
   end
 
-  def home3
+  def new
+    @grafico = Grafico.new # needed to instantiate the form_for
   end
 
-  def home4
+  def create
+    @grafico = Grafico.new(grafico_params)
+    @grafico.save
+    # Will raise ActiveModel::ForbiddenAttributesError
+    redirect_to grafico_path(@grafico)
   end
 
-  def home5
+  private
+
+  def grafico_params
+    params.require(:grafico).permit(:sustainable, :self_organization, :technical_excellence)
   end
+
 end

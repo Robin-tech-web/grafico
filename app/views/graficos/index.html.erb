@@ -1,0 +1,8 @@
+
+<div class="btn btn-primary">
+  <%= link_to 'Create Grafico', graficos_new_path, :class => "btn"%>
+</div>
+
+  <% @graficos.each do |grafico| %>
+    <li><%= grafico.sustainable %></li>
+  <% end %>

@@ -1,0 +1,321 @@
+<h2><%= @grafico.sustainable %></h2>
+<p><%= @grafico.self_organization %></p>
+<p><%= @grafico.technical_excellence %></p>
+
+<script src="//www.amcharts.com/lib/4/core.js"></script>
+<script src="//www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<div id="chartdiv" style="width: 100%; height: 1150px;"></div>
+
+<script>
+  // Themes begin
+am4core.useTheme(am4themes_animated);
+var colorSet = new am4core.ColorSet();
+// Themes end
+/* Create chart instance */
+var chart = am4core.create("chartdiv", am4charts.RadarChart);
+chart.innerRadius = am4core.percent(30);
+
+/* Add data */
+chart.data = [{
+  "country": "Sustainable",
+  "units": <%= @grafico.sustainable %>
+}, {
+  "country": "Self",
+  "units": <%= @grafico.self_organization %>
+}, {
+  "country": "Technical",
+  "units": <%= @grafico.technical_excellence %>
+}, {
+  "country": "Planning &",
+  "units": <%= @grafico.sustainable %>
+}, {
+  "country": "Effective ",
+  "units": <%= @grafico.sustainable %>
+}, {
+  "country": "Size & Skills",
+  "units": 8.7
+}, {
+  "country": "Allocation &",
+  "units": 8.5
+}, {
+  "country": "Workspace",
+  "units": 7.6
+}, {
+  "country": "Vision &",
+  "units": 8
+}, {
+  "country": "Goals &",
+  "units": 8.5
+}, {
+  "country": "Quarterly/",
+  "units": 2
+}, {
+  "country": "Monthly/",
+  "units": 5.7
+}, {
+  "country": "Weekly/",
+  "units": 5.3
+}, {
+  "country": "Roles &",
+  "units": 7
+}, {
+  "country": "Generalizing",
+  "units": 7.7
+}, {
+  "country": "Product",
+  "units": 8
+}, {
+  "country": "Team",
+  "units": 8.1
+}, {
+  "country": "Stakeholder",
+  "units": 8.2
+}, {
+  "country": "Predictable",
+  "units": 8.3
+}, {
+  "country": "Time",
+  "units": 8.4
+}, {
+  "country": "Value",
+  "units": 7.6
+}, {
+  "country": "Quality",
+  "units": 7.5
+}, {
+  "country": "Response",
+  "units": 7.7
+}, {
+  "country": "Effective",
+  "units": 8.1
+}, {
+  "country": "Leadership1",
+  "units": 7.2
+}, {
+  "country": "Impediment",
+  "units": 7.2
+}, {
+  "country": "Leadership2",
+  "units": 8.5
+}, {
+  "country": "Technical ",
+  "units": 8.5
+}, {
+  "country": "Engagement",
+  "units": 8.4
+}, {
+  "country": "Backlog Mgmt.",
+  "units": 8.5
+}, {
+  "country": "Leadership3",
+  "units": 6.5
+}, {
+  "country": "Leadership4",
+  "units": 8.1
+}, {
+  "country": "Develop",
+  "units": 7.5
+}, {
+  "country": "Process Imp.",
+  "units": 7.4
+}, {
+  "country": "Happiness",
+  "units": 4.0
+}, {
+  "country": "Colaboration",
+  "units": 7.7
+}, {
+  "country": "Trust &",
+  "units": 8
+}, {
+  "country": "Creativity &",
+  "units": 6.5
+}, {
+  "country": "Accountability",
+  "units": 6.5
+}];
+
+/* Create axes */
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "country";
+categoryAxis.renderer.labels.template.bent = true;
+categoryAxis.renderer.labels.template.radius = -55;
+categoryAxis.renderer.labels.template.location = 0.5;
+categoryAxis.renderer.labels.template.fontSize = 9;
+categoryAxis.renderer.labels.template.wrap = true;
+categoryAxis.renderer.labels.template.maxWidth = 1;
+
+categoryAxis.renderer.grid.template.strokeOpacity = 0.5;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.min = 0;
+valueAxis.max = 13;
+valueAxis.strictMinMax = true;
+valueAxis.disabled = true;
+
+var valueAxisRenderer = valueAxis.renderer;
+valueAxisRenderer.axisFills.template.disabled = true;
+valueAxisRenderer.ticks.template.disabled = true;
+valueAxisRenderer.minGridDistance = 20;
+valueAxisRenderer.grid.template.strokeOpacity = 0.05;
+
+var series1 = chart.series.push(new am4charts.RadarColumnSeries());
+series1.dataFields.valueY = "units";
+series1.dataFields.categoryX = "country";
+series1.name = "Units";
+series1.strokeWidth = 0;
+series1.columns.template.fill = am4core.color("#CDA2AB");
+
+var labelBullet = series1.bullets.push(new am4charts.LabelBullet());
+  labelBullet.label.text = "{valueY}";
+  labelBullet.label.fill = am4core.color("black");
+  labelBullet.locationY = 0.1;
+
+
+function createRange(name, startCategory, finishCategory, rangeColor) {
+
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+  range.label.text = name;
+  range.label.paddingBottom = 45;
+  range.label.location = 0.5;
+  range.label.fontWeight = "bolder";
+  range.label.fontSize = 20;
+  range.label.radius = -30;
+  range.label.fill = am4core.color("#ffffff");
+  range.label.bent = true;
+
+
+  range.grid.disabled = false;
+  range.grid.strokeWidth = 3;  
+
+  var axisFill = range.axisFill;
+  axisFill.innerRadius = -0.001; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
+  axisFill.radius = -45; // negative radius means it is calculated from max radius
+  axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
+  axisFill.fillOpacity = 1;
+  axisFill.togglable = true;
+  axisFill.fill = am4core.color(rangeColor);
+}
+
+function createRange2(name, startCategory, finishCategory) {
+
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+  range.label.text = name;
+  range.label.paddingBottom = 45;
+  range.label.location = 0.5;
+  range.label.fontWeight = "bolder";
+  range.label.fontSize = 15;
+  range.label.radius = -68;
+  range.label.fill = am4core.color("black");
+  range.label.bent = true;
+
+  var axisFill = range.axisFill;
+  axisFill.innerRadius = -37; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
+  axisFill.radius = -0.001; // negative radius means it is calculated from max radius
+  axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
+  axisFill.fillOpacity = 1;
+  axisFill.togglable = true;
+  axisFill.fill = am4core.color("white");
+  axisFill.stroke = am4core.color("black");
+  axisFill.strokeWidth = 3;
+}
+
+function createRange3(name, startCategory, finishCategory) {
+
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+  range.label.text = name;
+  range.label.paddingBottom = 45;
+  range.label.location = 0.5;
+  range.label.fontWeight = "bolder";
+  range.label.fontSize = 12;
+  range.label.radius = -380;
+  range.label.fill = am4core.color("black");
+  range.label.bent = true;
+  range.stroke = am4core.color("red").lighten(-0.5);
+
+  var axisFill = range.axisFill;
+  axisFill.innerRadius = -350; // almost the same as 100%, we set it in pixels as later we animate this property to some pixel value
+  axisFill.radius = 133; // negative radius means it is calculated from max radius
+  axisFill.disabled = false; // as regular fills are disabled, we need to enable this one
+  axisFill.fillOpacity = 1;
+  axisFill.togglable = true;
+  axisFill.fill = am4core.color("#ffffff");
+  axisFill.stroke = am4core.color("black");
+  axisFill.strokeWidth = 3;
+}
+
+function createRange4(name, startCategory, finishCategory) {
+
+  var range = categoryAxis.axisRanges.create();
+  range.category = startCategory;
+  range.endCategory = finishCategory;
+  range.label.text = name;
+  range.label.paddingBottom = 45;
+  range.label.location = 0.5;
+  range.label.fontSize = 9;
+  range.label.radius = -110;
+  range.label.fill = am4core.color("black");
+  range.label.bent = true;
+
+  range.grid.disabled = true;
+
+
+}
+
+createRange("Clarity", "Vision &", "Generalizing", "#ffa64d");
+createRange("Performance", "Product", "Response", "#267326");
+createRange("Leadership", "Effective", "Process Imp.", "#4d4dff");
+createRange("Culture", "Happiness", "Accountability", "#b30000");
+createRange("Foundation", "Sustainable", "Workspace", "#0073e6");
+
+createRange2("Vision", "Vision &", "Goals &")
+createRange2("Planning", "Quarterly/", "Weekly/")
+createRange2("Roles", "Roles &", "Generalizing")
+createRange2("Confidence", "Product", "Stakeholder")
+createRange2("Measurements", "Predictable", "Response")
+createRange2("Team Facilitator", "Effective", "Impediment")
+createRange2("Technical Leads", "Leadership2", "Technical ")
+createRange2("Product", "Engagement", "Leadership3")
+createRange2("Management", "Leadership4", "Process Imp.")
+createRange2("Team Dynamics", "Happiness", "Accountability")
+createRange2("Agility", "Sustainable", "Effective ")
+createRange2("Team Structure", "Size & Skills", "Workspace")
+
+createRange3("Clarity", "Vision &", "Generalizing");
+createRange3("Performance", "Product", "Response");
+createRange3("Leadership", "Effective", "Process Imp.");
+createRange3("Culture", "Happiness", "Accountability");
+createRange3("Foundation", "Sustainable", "Workspace");
+
+createRange4("Innovation", "Creativity &", "Creativity &")
+createRange4("Pace", "Sustainable", "Sustainable")
+createRange4("Organization", "Self", "Self")
+createRange4("Excellence", "Technical", "Technical")
+createRange4("Estimating", "Planning &", "Planning &")
+createRange4("Meetings", "Effective ", "Effective ")
+createRange4("Stabililty", "Allocation &", "Allocation &")
+createRange4("Purpose", "Vision &", "Vision &")
+createRange4("Outcomes", "Goals &", "Goals &")
+createRange4("Roadmap", "Quarterly/", "Quarterly/")
+createRange4("Release", "Monthly/", "Monthly/")
+createRange4("Iteration", "Weekly/", "Weekly/")
+createRange4("Expectations", "Roles &", "Roles &")
+createRange4("Specialists", "Generalizing", "Generalizing")
+createRange4("Owner", "Product", "Product")
+createRange4("Velocity", "Predictable", "Predictable")
+createRange4("to Market", "Time", "Time")
+createRange4("Delivered", "Value", "Value")
+createRange4("to Change", "Response", "Response")
+createRange4("Facilitation", "Effective", "Effective")
+createRange4("Mgmt", "Impediment", "Impediment")
+createRange4("Expertise", "Technical ", "Technical ")
+createRange4("People", "Develop", "Develop")
+createRange4("Respect", "Trust &", "Trust &")
+</script>
